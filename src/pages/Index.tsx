@@ -44,7 +44,7 @@ const Index = () => {
               size="xl"
               asChild
             >
-              <a href="https://calendar.app.google/PicJ5P6qPBB4HDDu8" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qh5e6qHdfw3jfFTMcy4BcMY5NP1cEhRBDvrgB4hUQ0u9yFx1Tmw7pbAWGyDkPeGv4n_TO-tpg" target="_blank" rel="noopener noreferrer">
                 <Calendar className="w-5 h-5" />
                 Book a Call
               </a>
@@ -162,7 +162,7 @@ const Index = () => {
                 className="bg-card text-foreground hover:bg-card/90 shadow-xl"
               >
                 <a
-                  href="https://calendar.app.google/PicJ5P6qPBB4HDDu8"
+                  href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qh5e6qHdfw3jfFTMcy4BcMY5NP1cEhRBDvrgB4hUQ0u9yFx1Tmw7pbAWGyDkPeGv4n_TO-tpg"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
