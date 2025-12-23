@@ -1,4 +1,4 @@
-import { Linkedin, Calendar, ChevronDown } from "lucide-react";
+import { Linkedin, Calendar, ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NetworkIllustration from "@/components/NetworkIllustration";
 import DataVisualization from "@/components/DataVisualization";
@@ -121,21 +121,38 @@ const Index = () => {
             Follow our journey and stay updated with the latest events, insights, and opportunities.
           </p>
 
-          <Button
-            variant="linkedin"
-            size="xl"
-            asChild
-            className="group"
-          >
-            <a
-              href="https://www.linkedin.com/company/89613705/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              variant="linkedin"
+              size="xl"
+              asChild
+              className="group"
             >
-              <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Follow on LinkedIn
-            </a>
-          </Button>
+              <a
+                href="https://www.linkedin.com/company/89613705/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                Follow on LinkedIn
+              </a>
+            </Button>
+
+            <Button
+              size="xl"
+              asChild
+              className="group bg-[#25D366] hover:bg-[#25D366]/90 text-primary-foreground shadow-soft hover:shadow-lg"
+            >
+              <a
+                href="https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                Join WhatsApp Group
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
