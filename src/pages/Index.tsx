@@ -107,6 +107,40 @@ const Index = () => {
                 </div>
               ))}
             </div>
+
+            {/* Team / Organizers */}
+            <div className="mt-14">
+              <h3 className="text-xl font-bold text-foreground text-center mb-8">
+                Meet the Organizers
+              </h3>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {[
+                  { name: "Dorian Kane", linkedin: "https://www.linkedin.com/in/dorian-kane/" },
+                  { name: "Dhimiter Gero", linkedin: "https://www.linkedin.com/in/dhimitergero/" },
+                ].map((member, index) => (
+                  <a
+                    key={index}
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-4 pr-6 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-accent/20 transition-all hover:shadow-soft"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-gradient-accent flex items-center justify-center text-accent-foreground font-bold text-lg">
+                      {member.name.split(" ").map(n => n[0]).join("")}
+                    </div>
+                    <div className="text-left">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                        {member.name}
+                      </p>
+                      <p className="text-sm text-muted-foreground flex items-center gap-1">
+                        <Linkedin className="w-3 h-3" />
+                        Organizer
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
