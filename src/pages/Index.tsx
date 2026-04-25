@@ -94,11 +94,10 @@ const Index = () => {
             </p>
 
             {/* Feature highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
               {[
                 { icon: "🎯", title: "Meetups", desc: "Regular community gatherings" },
                 { icon: "🛠️", title: "Workshops", desc: "Hands-on learning sessions" },
-                { icon: "🤝", title: "Collaboration", desc: "Project partnerships" },
               ].map((item, index) => (
                 <div
                   key={index}
@@ -109,6 +108,30 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Collaboration QR */}
+            <div className="mt-10 rounded-2xl bg-gradient-to-br from-secondary/50 to-accent/5 border border-border p-8 md:p-10">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <a
+                  href="https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 bg-background p-4 rounded-2xl shadow-soft hover:shadow-lg transition-all hover:scale-105"
+                  aria-label="Join WhatsApp group"
+                >
+                  <img src={whatsappQr} alt="WhatsApp group QR code" className="w-40 h-40" />
+                </a>
+                <div className="text-center md:text-left">
+                  <span className="text-4xl mb-3 block">🤝</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                    Collaboration
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Scan the QR code or tap it to join our WhatsApp community. Share projects, ask questions, and collaborate with fellow data and AI enthusiasts.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Team / Organizers */}
