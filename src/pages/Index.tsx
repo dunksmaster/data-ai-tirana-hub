@@ -139,11 +139,8 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="group block rounded-2xl overflow-hidden bg-background border border-border hover:border-accent/40 transition-all hover:shadow-lg hover:-translate-y-1"
                   >
-                    {/* Cover banner */}
-                    <div className="h-20 bg-gradient-primary relative" />
-
                     {/* Profile content */}
-                    <div className="px-5 pb-5 -mt-10">
+                    <div className="p-5">
                       <div className="w-20 h-20 rounded-full border-4 border-background bg-gradient-accent overflow-hidden flex items-center justify-center text-accent-foreground font-bold text-xl shadow-soft">
                         {member.photo ? (
                           <img
