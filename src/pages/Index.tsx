@@ -2,6 +2,7 @@ import { Linkedin, Calendar, ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NetworkIllustration from "@/components/NetworkIllustration";
 import DataVisualization from "@/components/DataVisualization";
+import dhimiterPhoto from "@/assets/dhimiter-gero.png";
 
 const Index = () => {
   const scrollToSection = (id: string) => {
@@ -113,29 +114,64 @@ const Index = () => {
               <h3 className="text-xl font-bold text-foreground text-center mb-8">
                 Meet the Organizers
               </h3>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 {[
-                  { name: "Dorian Kane", linkedin: "https://www.linkedin.com/in/dorian-kane/" },
-                  { name: "Dhimiter Gero", linkedin: "https://www.linkedin.com/in/dhimitergero/" },
+                  {
+                    name: "Dorian Kane",
+                    title: "Community Organizer",
+                    location: "Tirana, Albania",
+                    linkedin: "https://www.linkedin.com/in/dorian-kane/",
+                    photo: null,
+                  },
+                  {
+                    name: "Dhimitër Gëro",
+                    title: "Experienced Business Analyst | Ex Aon & Deloitte | Chevening Scholar 24/25 @UCL",
+                    location: "London, England, United Kingdom",
+                    linkedin: "https://www.linkedin.com/in/dhimitergero/",
+                    photo: dhimiterPhoto,
+                  },
                 ].map((member, index) => (
                   <a
                     key={index}
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 p-4 pr-6 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-accent/20 transition-all hover:shadow-soft"
+                    className="group block rounded-2xl overflow-hidden bg-background border border-border hover:border-accent/40 transition-all hover:shadow-lg hover:-translate-y-1"
                   >
-                    <div className="w-14 h-14 rounded-full bg-gradient-accent flex items-center justify-center text-accent-foreground font-bold text-lg">
-                      {member.name.split(" ").map(n => n[0]).join("")}
-                    </div>
-                    <div className="text-left">
-                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                        {member.name}
-                      </p>
-                      <p className="text-sm text-muted-foreground flex items-center gap-1">
-                        <Linkedin className="w-3 h-3" />
-                        Organizer
-                      </p>
+                    {/* Cover banner */}
+                    <div className="h-20 bg-gradient-primary relative" />
+
+                    {/* Profile content */}
+                    <div className="px-5 pb-5 -mt-10">
+                      <div className="w-20 h-20 rounded-full border-4 border-background bg-gradient-accent overflow-hidden flex items-center justify-center text-accent-foreground font-bold text-xl shadow-soft">
+                        {member.photo ? (
+                          <img
+                            src={member.photo}
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          member.name.split(" ").map((n) => n[0]).join("")
+                        )}
+                      </div>
+
+                      <div className="mt-3">
+                        <p className="font-bold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
+                          {member.name}
+                          <span className="text-xs font-normal text-muted-foreground">· Organizer</span>
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                          {member.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground/80 mt-2">
+                          {member.location}
+                        </p>
+
+                        <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-linkedin group-hover:gap-3 transition-all">
+                          <Linkedin className="w-4 h-4" />
+                          View profile
+                        </div>
+                      </div>
                     </div>
                   </a>
                 ))}
