@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import NetworkIllustration from "@/components/NetworkIllustration";
 import DataVisualization from "@/components/DataVisualization";
 import dhimiterPhoto from "@/assets/dhimiter-gero.png";
+import dorianPhoto from "@/assets/dorian-kane.png";
 
 const Index = () => {
   const scrollToSection = (id: string) => {
@@ -118,10 +119,10 @@ const Index = () => {
                 {[
                   {
                     name: "Dorian Kane",
-                    title: "Community Organizer",
+                    title: "Building Albania's AI & Web3 Dev Community | Cursor Ambassadors | Certified Blockchain Expert (CBE) | Solana Builder | Salesforce Trailblazer | AI Consultant",
                     location: "Tirana, Albania",
                     linkedin: "https://www.linkedin.com/in/dorian-kane/",
-                    photo: null,
+                    photo: dorianPhoto,
                   },
                   {
                     name: "Dhimitër Gëro",
