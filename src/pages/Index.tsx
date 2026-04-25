@@ -4,6 +4,7 @@ import NetworkIllustration from "@/components/NetworkIllustration";
 import DataVisualization from "@/components/DataVisualization";
 import dhimiterPhoto from "@/assets/dhimiter-gero.png";
 import dorianPhoto from "@/assets/dorian-kane.png";
+import whatsappQr from "@/assets/whatsapp-qr.svg";
 
 const Index = () => {
   const scrollToSection = (id: string) => {
