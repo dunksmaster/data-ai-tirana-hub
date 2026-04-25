@@ -88,6 +88,10 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, sans-serif;
   }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
 }
 
 @layer utilities {
