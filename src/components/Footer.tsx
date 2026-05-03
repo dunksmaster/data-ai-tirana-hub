@@ -4,7 +4,7 @@ const NAV_LINKS = [
   { id: "about", label: "About" },
   { id: "organizers", label: "Organizers" },
   { id: "community", label: "Community" },
-  { id: "faq", label: "FAQ" },
+  { id: "meetups", label: "Meetups" },
   { id: "book", label: "Contact" },
 ];
 

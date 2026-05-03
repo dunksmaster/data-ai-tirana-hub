@@ -1,7 +1,7 @@
+import { useState } from "react";
 import {
   Linkedin,
   Calendar,
-  ChevronDown,
   MessageCircle,
   Users,
   GraduationCap,
@@ -11,18 +11,19 @@ import {
   Clock,
   Sparkles,
   ArrowRight,
+  Images,
 } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import NetworkIllustration from "@/components/NetworkIllustration";
-import DataVisualization from "@/components/DataVisualization";
 import dhimiterPhoto from "@/assets/dhimiter-gero.png";
 import dorianPhoto from "@/assets/dorian-kane.png";
 import whatsappQr from "@/assets/whatsapp-qr.svg";
@@ -32,10 +33,20 @@ const BOOKING_URL =
 const WHATSAPP_URL = "https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx";
 const LINKEDIN_URL = "https://www.linkedin.com/company/89613705/";
 
+/** Photos in public/meetups/ — add or remove entries when you change files. */
+const MEETUP_PHOTOS = [
+  { src: "/meetups/IMG_4444.JPG", alt: "Data and AI Tirana community meetup" },
+  { src: "/meetups/IMG_4458.JPG", alt: "Community event in Tirana" },
+  { src: "/meetups/IMG_4478.JPG", alt: "Workshop at Data and AI Tirana" },
+  { src: "/meetups/IMG_4490.JPG", alt: "Meetup attendees in Tirana" },
+  { src: "/meetups/IMG_4517.JPG", alt: "Networking at a Tirana meetup" },
+  { src: "/meetups/IMG_4526.JPG", alt: "Data and AI Tirana gathering" },
+];
+
 const Index = () => {
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: true }),
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,7 +57,6 @@ const Index = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <NetworkIllustration className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-60 hidden lg:block floating-animation" />
         </div>
 
         <div className="container relative z-10 max-w-4xl mx-auto text-center">
@@ -86,20 +96,7 @@ const Index = () => {
               </a>
             </Button>
           </div>
-
-          <div className="mt-16 fade-in-up stagger-4">
-            <DataVisualization className="w-full max-w-md mx-auto opacity-80" />
-          </div>
         </div>
-
-        <button
-          onClick={() => scrollToSection("about")}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
-          aria-label="Scroll to about section"
-        >
-          <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
-          <ChevronDown className="w-5 h-5 animate-bounce" />
-        </button>
       </section>
 
       {/* About Section */}
@@ -115,44 +112,37 @@ const Index = () => {
             <div className="w-20 h-1 bg-gradient-accent mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                We're a growing community of data enthusiasts, ML engineers,
-                researchers, and learners — hosting meetups, workshops, and
-                collaborative projects to advance AI literacy in Albania.
-              </p>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-center">
+              We're a growing community of data enthusiasts, ML engineers,
+              researchers, and learners — hosting meetups, workshops, and
+              collaborative projects to advance AI literacy in Albania.
+            </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { icon: Users, title: "Meetups", desc: "Regular community gatherings" },
-                  { icon: GraduationCap, title: "Workshops", desc: "Hands-on learning sessions" },
-                  { icon: Code2, title: "Projects", desc: "Open-source collaboration" },
-                  { icon: HeartHandshake, title: "Mentorship", desc: "Learn from peers & experts" },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
-                  >
-                    <span className="shrink-0 w-10 h-10 rounded-lg bg-gradient-accent flex items-center justify-center text-accent-foreground">
-                      <item.icon className="w-5 h-5" />
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-foreground text-sm">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {item.desc}
-                      </p>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { icon: Users, title: "Meetups", desc: "Regular community gatherings" },
+                { icon: GraduationCap, title: "Workshops", desc: "Hands-on learning sessions" },
+                { icon: Code2, title: "Projects", desc: "Open-source collaboration" },
+                { icon: HeartHandshake, title: "Mentorship", desc: "Learn from peers & experts" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
+                >
+                  <span className="shrink-0 w-10 h-10 rounded-lg bg-gradient-accent flex items-center justify-center text-accent-foreground">
+                    <item.icon className="w-5 h-5" />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-foreground text-sm">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {item.desc}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-accent opacity-10 blur-3xl rounded-full" />
-              <NetworkIllustration className="relative w-full max-w-md floating-animation" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -356,62 +346,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-20 md:py-28 px-4 bg-background">
-        <div className="container max-w-3xl mx-auto">
+      {/* Meetup photos */}
+      <section id="meetups" className="py-20 md:py-28 px-4 bg-background">
+        <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
-              FAQ
+            <span className="inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+              <Images className="w-4 h-4" aria-hidden />
+              Meetups
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Frequently asked questions
+              Moments from our events
             </h2>
-            <p className="text-muted-foreground">
-              Everything you might want to know before joining.
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Slides advance automatically every few seconds. Hover to pause, or use the arrows and swipe to browse.
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="w-full space-y-3">
-            {[
-              {
-                q: "Who is this community for?",
-                a: "Anyone curious about data and AI in Albania — students, professionals, researchers, founders, and self-taught learners. Whether you're writing your first Python script or shipping ML to production, you're welcome.",
-              },
-              {
-                q: "Do I need experience in AI or data science?",
-                a: "No. We intentionally mix beginners and experts. Many of our sessions are introductory, and our community is friendly to newcomers asking questions.",
-              },
-              {
-                q: "Are the events free?",
-                a: "Yes, our community meetups and workshops are free to attend. Some specialized workshops or partner events may have a small fee — we'll always say so up front.",
-              },
-              {
-                q: "Where do you meet?",
-                a: "In Tirana, Albania. Specific venues change per event — join the WhatsApp group or follow us on LinkedIn to get notified about the next meetup location.",
-              },
-              {
-                q: "How can I speak or host a workshop?",
-                a: "We're always looking for speakers. Book a 15-minute call with us using the Contact section below and tell us what you'd like to share.",
-              },
-              {
-                q: "Can companies sponsor or partner with us?",
-                a: "Yes — sponsorship of food, venue, or workshops helps the community grow. Reach out via the Book a Call section to discuss partnerships.",
-              },
-            ].map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="border border-border rounded-xl px-5 bg-card hover:border-accent/40 transition-colors"
-              >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[autoplay]}
+            className="w-full max-w-4xl mx-auto"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {MEETUP_PHOTOS.map((photo, i) => (
+                <CarouselItem key={i} className="pl-2 md:pl-4 basis-full">
+                  <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-soft aspect-video">
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="w-full h-full object-cover"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 md:left-4 border-border bg-background/90 shadow-md hover:bg-background" />
+            <CarouselNext className="right-2 md:right-4 border-border bg-background/90 shadow-md hover:bg-background" />
+          </Carousel>
         </div>
       </section>
 
