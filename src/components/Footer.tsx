@@ -107,7 +107,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-background/60 text-center sm:text-left">
-            © 2025 Data and AI Tirana — Building the future of AI in the Balkans.
+            © 2026 Data and AI Tirana — Building the future of AI in the Balkans.
           </p>
           <button
             onClick={scrollToTop}
