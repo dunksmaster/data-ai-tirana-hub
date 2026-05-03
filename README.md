@@ -1,73 +1,61 @@
-# Welcome to your Lovable project
+# Data & AI Tirana Hub
 
-## Project info
+The official landing page for **Data & AI Tirana Hub** — a community bringing together data scientists, AI engineers, and tech enthusiasts in Tirana, Albania.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+🌐 **Live site:** https://data-ai-tirana-hub.lovable.app
 
-## How can I edit this code?
+## About
 
-There are several ways of editing your application.
+Data & AI Tirana Hub is a local community focused on knowledge sharing, networking, and collaboration around data science and artificial intelligence. We host meetups, workshops, and events to help members grow their skills and connect with peers.
 
-**Use Lovable**
+## Sections
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+The landing page includes:
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Hero** — Introduction to the community and primary CTAs
+- **Mission** — What we do and why it matters
+- **Community Stats** — Members, events, and engagement numbers
+- **Organizers** — Meet the team behind the hub
+- **Collaboration** — WhatsApp QR code to join the community chat
+- **FAQ** — Answers to common questions
+- **Connect** — Links to all our channels
 
-**Use your preferred IDE**
+## Join the Community
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- 💬 [WhatsApp Group](https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx)
+- 📅 [Upcoming Events (Google Calendar)](https://calendar.google.com/)
+- 💼 [LinkedIn](https://www.linkedin.com/)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Tech Stack
 
-Follow these steps:
+- **Vite** + **React** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui**
+- **Lovable Cloud** (Supabase) — backend, auth, database
+- **Lovable AI** — AI features via the AI Gateway
+
+## Local Development
+
+Requirements: Node.js & npm ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+cd data-ai-tirana-hub
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Changes pushed to GitHub sync automatically with Lovable, and vice versa.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Editing
 
-**Use GitHub Codespaces**
+- **Lovable:** open the [project](https://lovable.dev/projects/c9c0eb56-43cb-443d-a723-c0ee93689daf) and start prompting
+- **Your IDE:** clone the repo, edit, and push — changes sync back to Lovable
+- **GitHub:** edit files directly via the GitHub web UI or Codespaces
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
 
-## What technologies are used for this project?
+Open the project in Lovable and click **Publish** (top right). To attach a custom domain, go to **Project → Settings → Domains → Connect Domain**. [Docs](https://docs.lovable.dev/features/custom-domain).
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Built with ❤️ by the Data & AI Tirana Hub organizers.
