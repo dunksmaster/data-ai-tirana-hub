@@ -57,29 +57,29 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20 bg-gradient-hero">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      {/* Hero Section — padding-based height so CTAs sit closer to About (no full-screen vertical centering). */}
+      <section className="relative overflow-hidden px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-gradient-hero">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
         </div>
 
         <div className="container relative z-10 max-w-4xl mx-auto text-center">
-          <div className="fade-in-up inline-flex items-center gap-2 bg-card border border-border rounded-full px-4 py-2 mb-8 shadow-soft">
+          <div className="fade-in-up inline-flex items-center gap-2 bg-card border border-border rounded-full px-4 py-2 mb-6 shadow-soft">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span className="text-sm text-muted-foreground font-medium">
               Community-driven AI in Albania
             </span>
           </div>
 
-          <h1 className="fade-in-up stagger-1 text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight">
+          <h1 className="fade-in-up stagger-1 text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-5 tracking-tight">
             Data and AI <span className="text-gradient">Tirana</span>
           </h1>
 
-          <p className="fade-in-up stagger-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="fade-in-up stagger-2 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-3 md:mb-4 leading-relaxed">
             Connecting beginners &amp; experts in data science and AI across Albania.
           </p>
-          <p className="fade-in-up stagger-2 text-sm text-muted-foreground/80 mb-10">
+          <p className="fade-in-up stagger-2 text-sm text-muted-foreground/80 mb-7 md:mb-8">
             Free to join · Open to all levels · Meetups in Tirana
           </p>
 
@@ -105,9 +105,9 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 md:py-28 px-4 bg-card">
+      <section id="about" className="py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               About
             </span>
@@ -154,9 +154,9 @@ const Index = () => {
       </section>
 
       {/* Organizers Section */}
-      <section id="organizers" className="py-20 md:py-28 px-4 bg-background">
+      <section id="organizers" className="py-14 md:py-20 px-4 bg-background">
         <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               Team
             </span>
@@ -230,9 +230,9 @@ const Index = () => {
       </section>
 
       {/* Community / Join Section */}
-      <section id="community" className="py-20 md:py-28 px-4 bg-card">
+      <section id="community" className="py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               Community
             </span>
@@ -352,9 +352,9 @@ const Index = () => {
       </section>
 
       {/* Meetup photos */}
-      <section id="meetups" className="py-20 md:py-28 px-4 bg-background">
+      <section id="meetups" className="py-14 md:py-20 px-4 bg-background">
         <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               <Images className="w-4 h-4" aria-hidden />
               Meetups
@@ -393,7 +393,7 @@ const Index = () => {
       </section>
 
       {/* Book a Call Section */}
-      <section id="book" className="py-20 md:py-28 px-4 bg-card">
+      <section id="book" className="py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-8 md:p-16">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
