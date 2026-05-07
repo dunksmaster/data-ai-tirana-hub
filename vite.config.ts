@@ -4,11 +4,10 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-// Production builds use repo subpath for GitHub Pages project sites.
-const GITHUB_PAGES_BASE = "/data-ai-tirana-hub/";
-
+// Relative base in production so assets resolve on GitHub Pages project sites
+// (any repo name, with or without trailing-slash redirects).
 export default defineConfig(({ mode }) => ({
-  base: mode === "development" ? "/" : GITHUB_PAGES_BASE,
+  base: mode === "development" ? "/" : "./",
   server: {
     host: "::",
     port: 8080,
