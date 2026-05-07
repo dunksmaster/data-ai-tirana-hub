@@ -33,14 +33,19 @@ const BOOKING_URL =
 const WHATSAPP_URL = "https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx";
 const LINKEDIN_URL = "https://www.linkedin.com/company/89613705/";
 
+/** Public folder URLs must respect Vite `base` (e.g. GitHub Pages under /repo/). */
+function publicAssetUrl(path: string): string {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+}
+
 /** Photos in public/meetups/ — add or remove entries when you change files. */
 const MEETUP_PHOTOS = [
-  { src: "/meetups/IMG_4444.JPG", alt: "Data and AI Tirana community meetup" },
-  { src: "/meetups/IMG_4458.JPG", alt: "Community event in Tirana" },
-  { src: "/meetups/IMG_4478.JPG", alt: "Workshop at Data and AI Tirana" },
-  { src: "/meetups/IMG_4490.JPG", alt: "Meetup attendees in Tirana" },
-  { src: "/meetups/IMG_4517.JPG", alt: "Networking at a Tirana meetup" },
-  { src: "/meetups/IMG_4526.JPG", alt: "Data and AI Tirana gathering" },
+  { src: publicAssetUrl("/meetups/IMG_4444.JPG"), alt: "Data and AI Tirana community meetup" },
+  { src: publicAssetUrl("/meetups/IMG_4458.JPG"), alt: "Community event in Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4478.JPG"), alt: "Workshop at Data and AI Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4490.JPG"), alt: "Meetup attendees in Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4517.JPG"), alt: "Networking at a Tirana meetup" },
+  { src: publicAssetUrl("/meetups/IMG_4526.JPG"), alt: "Data and AI Tirana gathering" },
 ];
 
 const Index = () => {
