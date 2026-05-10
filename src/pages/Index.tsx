@@ -799,8 +799,14 @@ const Index = () => {
       <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-8 md:p-16">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-2xl" />
+            <ParallaxBlob
+              speed={0.3}
+              className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl"
+            />
+            <ParallaxBlob
+              speed={-0.22}
+              className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-2xl"
+            />
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
