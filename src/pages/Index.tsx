@@ -32,6 +32,19 @@ import {
 } from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useParallax } from "@/hooks/useParallax";
+
+/** Decorative blob with scroll parallax. Pointer-events disabled. */
+const ParallaxBlob = memo(function ParallaxBlob({
+  className,
+  speed = 0.2,
+}: {
+  className: string;
+  speed?: number;
+}) {
+  const ref = useParallax<HTMLDivElement>(speed);
+  return <div ref={ref} aria-hidden className={`will-change-transform ${className}`} />;
+});
 import dhimiterPhoto from "@/assets/dhimiter-gero.webp";
 import dorianPhoto from "@/assets/dorian-kane.webp";
 
