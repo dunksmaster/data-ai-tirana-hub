@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { lazy, memo, Suspense, useEffect, useRef, useState } from "react";
 import {
   animate,
   createTimeline,
@@ -20,8 +20,6 @@ import {
   Sparkles,
   ArrowRight,
   Images,
-  Github,
-  Globe,
 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
@@ -34,18 +32,16 @@ import {
 } from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import HeroMetaballs from "@/components/HeroMetaballs";
-import dhimiterPhoto from "@/assets/dhimiter-gero.png";
-import dorianPhoto from "@/assets/dorian-kane.png";
+import dhimiterPhoto from "@/assets/dhimiter-gero.webp";
+import dorianPhoto from "@/assets/dorian-kane.webp";
+
+const HeroMetaballs = lazy(() => import("@/components/HeroMetaballs"));
 import whatsappQr from "@/assets/whatsapp-qr.svg";
 
 const BOOKING_URL =
   "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qh5e6qHdfw3jfFTMcy4BcMY5NP1cEhRBDvrgB4hUQ0u9yFx1Tmw7pbAWGyDkPeGv4n_TO-tpg";
 const WHATSAPP_URL = "https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx";
 const LINKEDIN_URL = "https://www.linkedin.com/company/89613705/";
-const GITHUB_REPO_URL = "https://github.com/dunksmaster/data-ai-tirana-hub";
-const LIVE_SITE_URL = "https://dunksmaster.github.io/data-ai-tirana-hub/";
-
 /** Public folder URLs must respect Vite `base` (e.g. GitHub Pages under /repo/). */
 function publicAssetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
@@ -197,19 +193,15 @@ const HowItWorksScramble = memo(function HowItWorksScramble() {
 });
 
 const MEETUP_PHOTOS = [
-  { src: publicAssetUrl("/meetups/IMG_4444.JPG"), alt: "Data and AI Tirana community meetup" },
-  { src: publicAssetUrl("/meetups/IMG_4458.JPG"), alt: "Community event in Tirana" },
-  { src: publicAssetUrl("/meetups/IMG_4478.JPG"), alt: "Workshop at Data and AI Tirana" },
-  { src: publicAssetUrl("/meetups/IMG_4490.JPG"), alt: "Meetup attendees in Tirana" },
-  { src: publicAssetUrl("/meetups/IMG_4517.JPG"), alt: "Networking at a Tirana meetup" },
-  { src: publicAssetUrl("/meetups/IMG_4526.JPG"), alt: "Data and AI Tirana gathering" },
+  { src: publicAssetUrl("/meetups/IMG_4444.webp"), alt: "Data and AI Tirana community meetup" },
+  { src: publicAssetUrl("/meetups/IMG_4458.webp"), alt: "Community event in Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4478.webp"), alt: "Workshop at Data and AI Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4490.webp"), alt: "Meetup attendees in Tirana" },
+  { src: publicAssetUrl("/meetups/IMG_4517.webp"), alt: "Networking at a Tirana meetup" },
+  { src: publicAssetUrl("/meetups/IMG_4526.webp"), alt: "Data and AI Tirana gathering" },
 ];
 
 const HERO_HEADING = "Data and AI Tirana";
-/** Last three letters "ana" — blue; "Data and AI Tir" — navy per design. */
-const HERO_HEADING_ACCENT_START = HERO_HEADING.length - 3;
-const HERO_HEADING_MAIN = HERO_HEADING.slice(0, HERO_HEADING_ACCENT_START);
-const HERO_HEADING_ACCENT = HERO_HEADING.slice(HERO_HEADING_ACCENT_START);
 
 /**
  * Memoized so Index re-renders do not reset DOM after splitText().
@@ -242,13 +234,8 @@ const HeroAnimatedTitle = memo(function HeroAnimatedTitle() {
 
     const { chars } = splitter;
 
-    chars.forEach((node: HTMLElement, i: number) => {
-      node.classList.add("inline-block");
-      if (i >= HERO_HEADING_ACCENT_START) {
-        node.classList.add("text-hero-heading-accent");
-      } else {
-        node.classList.add("text-hero-heading");
-      }
+    chars.forEach((node: HTMLElement) => {
+      node.classList.add("inline-block", "text-hero-heading");
     });
 
     const animation = animate(chars, {
@@ -274,9 +261,8 @@ const HeroAnimatedTitle = memo(function HeroAnimatedTitle() {
 
   if (reduceMotion) {
     return (
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-5 tracking-tight">
-        <span className="text-hero-heading">{HERO_HEADING_MAIN}</span>
-        <span className="text-hero-heading-accent">{HERO_HEADING_ACCENT}</span>
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-5 tracking-tight text-hero-heading">
+        {HERO_HEADING}
       </h1>
     );
   }
@@ -291,8 +277,7 @@ const HeroAnimatedTitle = memo(function HeroAnimatedTitle() {
   );
 });
 
-/** Timeline choreography for the meetups intro strip (keeps sync pattern; short durations for snappy UI). */
-const MEETUPS_SHAPE_X = "10rem";
+/** Base duration for meetups strip accent motion (row travel scales with this). */
 const MEETUPS_MOTION_MS = 650;
 
 /**
@@ -332,7 +317,7 @@ const ScrollSyncedSquare = memo(function ScrollSyncedSquare() {
   }, []);
 
   return (
-    <div className="flex justify-center mt-10 md:mt-12 motion-reduce:hidden" aria-hidden>
+    <div className="flex justify-center mt-6 md:mt-8 motion-reduce:hidden" aria-hidden>
       <div
         ref={squareRef}
         className="square h-10 w-10 shrink-0 rounded-md bg-[#3B82F6]/15 border border-[#3B82F6]/40 shadow-sm"
@@ -343,6 +328,7 @@ const ScrollSyncedSquare = memo(function ScrollSyncedSquare() {
 
 const MeetupsIntroMotion = memo(function MeetupsIntroMotion() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const shapesRowRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const triangleRef = useRef<HTMLDivElement>(null);
   const squareRef = useRef<HTMLDivElement>(null);
@@ -354,30 +340,30 @@ const MeetupsIntroMotion = memo(function MeetupsIntroMotion() {
     const circle = circleRef.current;
     const triangle = triangleRef.current;
     const square = squareRef.current;
-    if (!track || !circle || !triangle || !square) return;
+    const shapesRow = shapesRowRef.current;
+    if (!track || !circle || !triangle || !square || !shapesRow) return;
 
     let tlMain: ReturnType<typeof createTimeline> | null = null;
 
+    const maxTranslateX = () => {
+      const inset = 10;
+      return Math.max(0, track.clientWidth - shapesRow.offsetWidth - inset);
+    };
+
     const start = () => {
       if (tlMain) return;
-      const circleAnimation = animate(circle, {
-        x: MEETUPS_SHAPE_X,
-        duration: MEETUPS_MOTION_MS,
+      const xEnd = maxTranslateX();
+      if (xEnd < 8) return;
+
+      const rowTravelMs = Math.round(MEETUPS_MOTION_MS * 2.35);
+
+      const rowSlide = animate(shapesRow, {
+        x: xEnd,
+        duration: rowTravelMs,
         ease: "inOutQuad",
       });
 
-      const tlA = createTimeline()
-        .sync(circleAnimation)
-        .add(triangle, {
-          x: MEETUPS_SHAPE_X,
-          duration: MEETUPS_MOTION_MS,
-          ease: "inOutQuad",
-        })
-        .add(square, {
-          x: MEETUPS_SHAPE_X,
-          duration: Math.round(MEETUPS_MOTION_MS * 0.75),
-          ease: "inOutQuad",
-        });
+      const tlA = createTimeline().sync(rowSlide);
 
       const tlB = createTimeline({ defaults: { duration: MEETUPS_MOTION_MS, ease: "inOutQuad" } })
         .add([triangle, square], { rotate: 360 }, 0)
@@ -388,7 +374,7 @@ const MeetupsIntroMotion = memo(function MeetupsIntroMotion() {
         loopDelay: 350,
       })
         .sync(tlA)
-        .sync(tlB, `-=${MEETUPS_MOTION_MS}`);
+        .sync(tlB, `-=${Math.round(MEETUPS_MOTION_MS * 0.9)}`);
     };
 
     const stop = () => {
@@ -405,7 +391,21 @@ const MeetupsIntroMotion = memo(function MeetupsIntroMotion() {
     );
     io.observe(track);
 
+    let resizeDebounce: ReturnType<typeof globalThis.setTimeout> | undefined;
+    const ro = new ResizeObserver(() => {
+      if (!tlMain) return;
+      globalThis.clearTimeout(resizeDebounce);
+      resizeDebounce = globalThis.setTimeout(() => {
+        resizeDebounce = undefined;
+        stop();
+        start();
+      }, 120);
+    });
+    ro.observe(track);
+
     return () => {
+      globalThis.clearTimeout(resizeDebounce);
+      ro.disconnect();
       io.disconnect();
       stop();
     };
@@ -418,7 +418,10 @@ const MeetupsIntroMotion = memo(function MeetupsIntroMotion() {
       aria-hidden
     >
       <div className="relative h-14 overflow-hidden rounded-2xl border border-border/70 bg-muted/15 shadow-inner">
-        <div className="absolute inset-y-0 left-0 flex items-center gap-5 pl-5">
+        <div
+          ref={shapesRowRef}
+          className="absolute inset-y-0 left-0 flex items-center gap-5 pl-5 will-change-transform"
+        >
           <div
             ref={circleRef}
             className="h-3 w-3 shrink-0 rounded-full bg-[#3B82F6] shadow-sm"
@@ -446,13 +449,15 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div id="main-content" className="min-h-screen bg-background" tabIndex={-1}>
       <Navbar />
 
       {/* Hero Section — padding-based height so CTAs sit closer to About (no full-screen vertical centering). */}
-      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-[linear-gradient(180deg,rgba(249,250,251,0.78)_0%,rgba(243,244,246,0.72)_100%)] dark:bg-[linear-gradient(180deg,hsl(252_35%_8%/0.82)_0%,hsl(252_30%_12%/0.78)_100%)]">
+      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-gradient-hero">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <HeroMetaballs />
+          <Suspense fallback={null}>
+            <HeroMetaballs />
+          </Suspense>
           <div className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
         </div>
@@ -496,7 +501,10 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
+      <section
+        id="about"
+        className="scroll-section-anchor px-4 pt-14 pb-6 md:pt-20 md:pb-8 bg-card"
+      >
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -540,40 +548,6 @@ const Index = () => {
                 </div>
               ))}
             </div>
-
-            <p className="mt-8 text-center text-sm text-muted-foreground">
-              This site is live at{" "}
-              <a
-                href={LIVE_SITE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground underline-offset-2 hover:text-accent hover:underline break-all sm:break-keep"
-              >
-                dunksmaster.github.io/data-ai-tirana-hub
-              </a>
-              .
-            </p>
-
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-border/60 pt-8">
-              <a
-                href={GITHUB_REPO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
-              >
-                <Github className="w-4 h-4 shrink-0" aria-hidden />
-                Source on GitHub
-              </a>
-              <a
-                href={LIVE_SITE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
-              >
-                <Globe className="w-4 h-4 shrink-0" aria-hidden />
-                Open live site
-              </a>
-            </div>
           </div>
 
           <ScrollSyncedSquare />
@@ -581,7 +555,10 @@ const Index = () => {
       </section>
 
       {/* Organizers Section */}
-      <section id="organizers" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background/80">
+      <section
+        id="organizers"
+        className="scroll-section-anchor px-4 pt-8 pb-14 md:pt-10 md:pb-20 bg-background"
+      >
         <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -613,9 +590,9 @@ const Index = () => {
                 linkedin: "https://www.linkedin.com/in/dhimitergero/",
                 photo: dhimiterPhoto,
               },
-            ].map((member, index) => (
+            ].map((member) => (
               <a
-                key={index}
+                key={member.linkedin}
                 href={member.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -625,7 +602,11 @@ const Index = () => {
                   <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-accent flex items-center justify-center text-accent-foreground font-bold text-xl shadow-soft">
                     <img
                       src={member.photo}
-                      alt={member.name}
+                      alt=""
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -657,7 +638,7 @@ const Index = () => {
       </section>
 
       {/* Community / Join Section */}
-      <section id="community" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
+      <section id="community" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -685,6 +666,10 @@ const Index = () => {
                   <img
                     src={whatsappQr}
                     alt="WhatsApp group QR code"
+                    width={160}
+                    height={160}
+                    loading="lazy"
+                    decoding="async"
                     className="w-40 h-40"
                   />
                 </a>
@@ -744,7 +729,7 @@ const Index = () => {
       </section>
 
       {/* Meetup photos */}
-      <section id="meetups" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background/80">
+      <section id="meetups" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background">
         <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -768,17 +753,18 @@ const Index = () => {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {MEETUP_PHOTOS.map((photo, i) => (
-                <CarouselItem key={i} className="pl-2 md:pl-4 basis-full">
+                <CarouselItem key={photo.src} className="pl-2 md:pl-4 basis-full">
                   <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-soft aspect-video">
                     <img
                       src={photo.src}
                       alt={photo.alt}
                       className="w-full h-full object-cover"
+                      width={1280}
+                      height={720}
+                      sizes="(max-width: 1024px) 100vw, 896px"
                       loading={i === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      {...(i === 0
-                        ? { fetchpriority: "high" as const }
-                        : { fetchpriority: "low" as const })}
+                      fetchPriority={i === 0 ? "high" : "low"}
                     />
                   </div>
                 </CarouselItem>
@@ -791,7 +777,7 @@ const Index = () => {
       </section>
 
       {/* Book a Call Section */}
-      <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
+      <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-8 md:p-16">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />

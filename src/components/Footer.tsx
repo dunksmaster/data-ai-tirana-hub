@@ -1,4 +1,4 @@
-import { Linkedin, MessageCircle, ArrowUp, Sparkles } from "lucide-react";
+import { BrainCircuit, Linkedin, MessageCircle, ArrowUp } from "lucide-react";
 import { scrollIntoViewBehavior } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -21,8 +21,8 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-accent-foreground" />
+              <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
+                <BrainCircuit className="w-4 h-4" aria-hidden />
               </span>
               <span className="font-bold text-background tracking-tight">
                 Data &amp; AI Tirana

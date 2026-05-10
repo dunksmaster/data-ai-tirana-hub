@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Calendar, Menu, Sparkles } from "lucide-react";
+import { BrainCircuit, Calendar, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -54,17 +54,16 @@ const Navbar = () => {
           className="flex items-center gap-2 group"
           aria-label="Data and AI Tirana — back to top"
         >
-          <span className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform">
-            <Sparkles className="w-4 h-4 text-accent-foreground" />
+          <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground shadow-sm group-hover:scale-105 transition-transform">
+            <BrainCircuit className="w-4 h-4" aria-hidden />
           </span>
-          <span className="font-bold tracking-tight hidden sm:inline">
-            <span className="text-hero-heading">Data &amp; AI Tir</span>
-            <span className="text-hero-heading-accent">ana</span>
+          <span className="font-bold tracking-tight text-foreground hidden sm:inline">
+            Data &amp; AI Tirana
           </span>
         </button>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
