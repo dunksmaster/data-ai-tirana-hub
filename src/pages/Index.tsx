@@ -466,7 +466,7 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section — padding-based height so CTAs sit closer to About (no full-screen vertical centering). */}
-      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-gradient-hero">
+      <section className="relative px-4 pt-16 pb-14 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 bg-gradient-hero">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <Suspense fallback={null}>
             <HeroMetaballs />
