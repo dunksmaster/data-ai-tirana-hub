@@ -9,8 +9,10 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   base: mode === "development" ? "/" : "./",
   server: {
-    host: "::",
+    // `true` binds all interfaces and tends to behave better on Windows than `::` alone.
+    host: true,
     port: 8080,
+    strictPort: false,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

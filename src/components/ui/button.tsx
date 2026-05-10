@@ -17,7 +17,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         accent: "bg-gradient-accent text-accent-foreground hover:opacity-90 shadow-glow hover:shadow-xl transform hover:-translate-y-0.5",
         linkedin: "bg-linkedin text-primary-foreground hover:opacity-90 shadow-soft hover:shadow-lg",
-        hero: "bg-gradient-accent text-accent-foreground hover:opacity-95 shadow-glow hover:shadow-xl transform hover:-translate-y-1 text-base px-8 py-6 rounded-xl",
+        hero: "bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 shadow-soft hover:shadow-xl transform hover:-translate-y-1 text-base px-8 py-6 rounded-xl",
       },
       size: {
         default: "h-11 px-5 py-2.5",

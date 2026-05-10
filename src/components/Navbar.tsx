@@ -7,12 +7,13 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn, scrollIntoViewBehavior } from "@/lib/utils";
 
 const NAV_LINKS = [
   { id: "about", label: "About" },
   { id: "organizers", label: "Organizers" },
   { id: "community", label: "Community" },
+  { id: "projects", label: "Stories" },
   { id: "meetups", label: "Meetups" },
   { id: "book", label: "Contact" },
 ];
@@ -31,11 +32,11 @@ const Navbar = () => {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: scrollIntoViewBehavior() });
   };
 
   const scrollToTop = () =>
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: scrollIntoViewBehavior() });
 
   return (
     <header
@@ -56,8 +57,9 @@ const Navbar = () => {
           <span className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform">
             <Sparkles className="w-4 h-4 text-accent-foreground" />
           </span>
-          <span className="font-bold text-foreground tracking-tight hidden sm:inline">
-            Data &amp; AI <span className="text-gradient">Tirana</span>
+          <span className="font-bold tracking-tight hidden sm:inline">
+            <span className="text-hero-heading">Data &amp; AI Tir</span>
+            <span className="text-hero-heading-accent">ana</span>
           </span>
         </button>
 

@@ -1,17 +1,19 @@
 import { Linkedin, MessageCircle, ArrowUp, Sparkles } from "lucide-react";
+import { scrollIntoViewBehavior } from "@/lib/utils";
 
 const NAV_LINKS = [
   { id: "about", label: "About" },
   { id: "organizers", label: "Organizers" },
   { id: "community", label: "Community" },
+  { id: "projects", label: "Stories" },
   { id: "meetups", label: "Meetups" },
   { id: "book", label: "Contact" },
 ];
 
 const Footer = () => {
   const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: scrollIntoViewBehavior() });
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: scrollIntoViewBehavior() });
 
   return (
     <footer className="bg-foreground text-background/80">
@@ -95,7 +97,7 @@ const Footer = () => {
                 href="https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-background/10 hover:bg-[#25D366] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-background/10 hover:bg-[#22C55E] flex items-center justify-center transition-colors"
                 aria-label="Join WhatsApp group"
               >
                 <MessageCircle className="w-4 h-4" />
