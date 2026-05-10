@@ -471,8 +471,14 @@ const Index = () => {
           <Suspense fallback={null}>
             <HeroMetaballs />
           </Suspense>
-          <div className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
+          <ParallaxBlob
+            speed={0.25}
+            className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl"
+          />
+          <ParallaxBlob
+            speed={-0.18}
+            className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl"
+          />
         </div>
 
         <div className="container relative z-10 isolate max-w-4xl mx-auto text-center">
