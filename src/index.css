@@ -192,6 +192,12 @@
   .pulse-glow {
     animation: none;
   }
+
+  /* Global parallax layers are unmounted in JS when reduced motion is on; this is a safety net. */
+  .global-parallax-layer {
+    transform: none !important;
+    will-change: auto;
+  }
 }
 
 @keyframes float {

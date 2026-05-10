@@ -2,7 +2,9 @@
 
 The official landing page for **Data & AI Tirana Hub** — a community bringing together data scientists, AI engineers, and tech enthusiasts in Tirana, Albania.
 
-🌐 **Live site:** https://data-ai-tirana-hub.lovable.app
+🌐 **Live site (GitHub Pages):** https://dunksmaster.github.io/data-ai-tirana-hub/
+
+A Lovable-hosted build is also available at https://data-ai-tirana-hub.lovable.app.
 
 ## About
 
@@ -89,7 +91,9 @@ Photos are served from `public/meetups/`. The carousel reads from `MEETUP_PHOTOS
 
 ## Deployment
 
-Open the project in Lovable and click **Publish** (top right). To attach a custom domain, go to **Project → Settings → Domains → Connect Domain**. [Docs](https://docs.lovable.dev/features/custom-domain).
+Production deploys to **GitHub Pages** at https://dunksmaster.github.io/data-ai-tirana-hub/ (see `.github/workflows/deploy-pages.yml`).
+
+Open the project in Lovable and click **Publish** (top right) for the Lovable-hosted preview. To attach a custom domain there, go to **Project → Settings → Domains → Connect Domain**. [Docs](https://docs.lovable.dev/features/custom-domain).
 
 ---
 

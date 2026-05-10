@@ -20,6 +20,8 @@ import {
   Sparkles,
   ArrowRight,
   Images,
+  Github,
+  Globe,
 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
@@ -41,6 +43,8 @@ const BOOKING_URL =
   "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qh5e6qHdfw3jfFTMcy4BcMY5NP1cEhRBDvrgB4hUQ0u9yFx1Tmw7pbAWGyDkPeGv4n_TO-tpg";
 const WHATSAPP_URL = "https://chat.whatsapp.com/F5pFiV0oEBn0V2QF1SSDAx";
 const LINKEDIN_URL = "https://www.linkedin.com/company/89613705/";
+const GITHUB_REPO_URL = "https://github.com/dunksmaster/data-ai-tirana-hub";
+const LIVE_SITE_URL = "https://dunksmaster.github.io/data-ai-tirana-hub/";
 
 /** Public folder URLs must respect Vite `base` (e.g. GitHub Pages under /repo/). */
 function publicAssetUrl(path: string): string {
@@ -442,11 +446,11 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
 
       {/* Hero Section — padding-based height so CTAs sit closer to About (no full-screen vertical centering). */}
-      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-gradient-hero">
+      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-[linear-gradient(180deg,rgba(249,250,251,0.78)_0%,rgba(243,244,246,0.72)_100%)] dark:bg-[linear-gradient(180deg,hsl(252_35%_8%/0.82)_0%,hsl(252_30%_12%/0.78)_100%)]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <HeroMetaballs />
           <div className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl" />
@@ -492,7 +496,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
+      <section id="about" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -536,6 +540,40 @@ const Index = () => {
                 </div>
               ))}
             </div>
+
+            <p className="mt-8 text-center text-sm text-muted-foreground">
+              This site is live at{" "}
+              <a
+                href={LIVE_SITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground underline-offset-2 hover:text-accent hover:underline break-all sm:break-keep"
+              >
+                dunksmaster.github.io/data-ai-tirana-hub
+              </a>
+              .
+            </p>
+
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-border/60 pt-8">
+              <a
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
+              >
+                <Github className="w-4 h-4 shrink-0" aria-hidden />
+                Source on GitHub
+              </a>
+              <a
+                href={LIVE_SITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
+              >
+                <Globe className="w-4 h-4 shrink-0" aria-hidden />
+                Open live site
+              </a>
+            </div>
           </div>
 
           <ScrollSyncedSquare />
@@ -543,7 +581,7 @@ const Index = () => {
       </section>
 
       {/* Organizers Section */}
-      <section id="organizers" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background">
+      <section id="organizers" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background/80">
         <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -619,7 +657,7 @@ const Index = () => {
       </section>
 
       {/* Community / Join Section */}
-      <section id="community" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
+      <section id="community" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -706,7 +744,7 @@ const Index = () => {
       </section>
 
       {/* Meetup photos */}
-      <section id="meetups" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background">
+      <section id="meetups" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background/80">
         <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent mb-3">
@@ -753,7 +791,7 @@ const Index = () => {
       </section>
 
       {/* Book a Call Section */}
-      <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
+      <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card/80">
         <div className="container max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-8 md:p-16">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
