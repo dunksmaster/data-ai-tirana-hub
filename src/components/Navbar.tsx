@@ -7,6 +7,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn, scrollIntoViewBehavior } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -76,7 +77,8 @@ const Navbar = () => {
         </nav>
 
         {/* CTA */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <ThemeToggle />
           <Button variant="accent" size="sm" asChild className="hidden sm:inline-flex">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
               <Calendar className="w-4 h-4" />
@@ -93,6 +95,10 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <div className="flex flex-col gap-1 mt-8">
+                <div className="flex items-center justify-between px-4 py-2 mb-2 rounded-lg border border-border bg-muted/40">
+                  <span className="text-sm font-medium text-foreground">Theme</span>
+                  <ThemeToggle />
+                </div>
                 {NAV_LINKS.map((link) => (
                   <SheetClose asChild key={link.id}>
                     <button
