@@ -32,6 +32,19 @@ import {
 } from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useParallax } from "@/hooks/useParallax";
+
+/** Decorative blob with scroll parallax. Pointer-events disabled. */
+const ParallaxBlob = memo(function ParallaxBlob({
+  className,
+  speed = 0.2,
+}: {
+  className: string;
+  speed?: number;
+}) {
+  const ref = useParallax<HTMLDivElement>(speed);
+  return <div ref={ref} aria-hidden className={`will-change-transform ${className}`} />;
+});
 import dhimiterPhoto from "@/assets/dhimiter-gero.webp";
 import dorianPhoto from "@/assets/dorian-kane.webp";
 
@@ -458,8 +471,14 @@ const Index = () => {
           <Suspense fallback={null}>
             <HeroMetaballs />
           </Suspense>
-          <div className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
+          <ParallaxBlob
+            speed={0.25}
+            className="absolute top-16 left-6 w-56 h-56 sm:w-64 sm:h-64 bg-accent/5 rounded-full blur-3xl"
+          />
+          <ParallaxBlob
+            speed={-0.18}
+            className="absolute bottom-10 right-6 w-72 h-72 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl"
+          />
         </div>
 
         <div className="container relative z-10 isolate max-w-4xl mx-auto text-center">
@@ -780,8 +799,14 @@ const Index = () => {
       <section id="book" className="scroll-section-anchor py-14 md:py-20 px-4 bg-card">
         <div className="container max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-8 md:p-16">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-2xl" />
+            <ParallaxBlob
+              speed={0.3}
+              className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl"
+            />
+            <ParallaxBlob
+              speed={-0.22}
+              className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-2xl"
+            />
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
