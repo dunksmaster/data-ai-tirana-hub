@@ -33,7 +33,6 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroMetaballs from "@/components/HeroMetaballs";
-import ParallaxProjectStrip, { type ParallaxProjectItem } from "@/components/ParallaxProjectStrip";
 import dhimiterPhoto from "@/assets/dhimiter-gero.png";
 import dorianPhoto from "@/assets/dorian-kane.png";
 import whatsappQr from "@/assets/whatsapp-qr.svg";
@@ -200,46 +199,6 @@ const MEETUP_PHOTOS = [
   { src: publicAssetUrl("/meetups/IMG_4490.JPG"), alt: "Meetup attendees in Tirana" },
   { src: publicAssetUrl("/meetups/IMG_4517.JPG"), alt: "Networking at a Tirana meetup" },
   { src: publicAssetUrl("/meetups/IMG_4526.JPG"), alt: "Data and AI Tirana gathering" },
-];
-
-/** Parallax strip — same assets as the carousel, with short editorial labels. */
-const PARALLAX_PROJECT_ITEMS: ParallaxProjectItem[] = [
-  {
-    src: MEETUP_PHOTOS[2]!.src,
-    alt: MEETUP_PHOTOS[2]!.alt,
-    title: "Workshop floor",
-    blurb: "Live demos, notebooks, and space to try ideas together.",
-  },
-  {
-    src: MEETUP_PHOTOS[3]!.src,
-    alt: MEETUP_PHOTOS[3]!.alt,
-    title: "Room for beginners",
-    blurb: "Questions welcome — we learn out loud as a group.",
-  },
-  {
-    src: MEETUP_PHOTOS[4]!.src,
-    alt: MEETUP_PHOTOS[4]!.alt,
-    title: "Cross-pollination",
-    blurb: "Engineers, analysts, and curious newcomers swapping notes.",
-  },
-  {
-    src: MEETUP_PHOTOS[0]!.src,
-    alt: MEETUP_PHOTOS[0]!.alt,
-    title: "Regular rhythm",
-    blurb: "Recurring meetups that keep momentum between big events.",
-  },
-  {
-    src: MEETUP_PHOTOS[1]!.src,
-    alt: MEETUP_PHOTOS[1]!.alt,
-    title: "Tirana evenings",
-    blurb: "City lights after sessions — community doesn’t end at the door.",
-  },
-  {
-    src: MEETUP_PHOTOS[5]!.src,
-    alt: MEETUP_PHOTOS[5]!.alt,
-    title: "Ideas into projects",
-    blurb: "Side conversations that turn into repos, datasets, and collabs.",
-  },
 ];
 
 const HERO_HEADING = "Data and AI Tirana";
@@ -746,8 +705,6 @@ const Index = () => {
         </div>
       </section>
 
-      <ParallaxProjectStrip items={PARALLAX_PROJECT_ITEMS} />
-
       {/* Meetup photos */}
       <section id="meetups" className="scroll-section-anchor py-14 md:py-20 px-4 bg-background">
         <div className="container max-w-5xl mx-auto">
@@ -781,7 +738,9 @@ const Index = () => {
                       className="w-full h-full object-cover"
                       loading={i === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      fetchPriority={i === 0 ? "high" : "low"}
+                      {...(i === 0
+                        ? { fetchpriority: "high" as const }
+                        : { fetchpriority: "low" as const })}
                     />
                   </div>
                 </CarouselItem>

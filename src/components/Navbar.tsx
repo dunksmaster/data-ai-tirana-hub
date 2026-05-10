@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { id: "about", label: "About" },
   { id: "organizers", label: "Organizers" },
   { id: "community", label: "Community" },
-  { id: "projects", label: "Stories" },
   { id: "meetups", label: "Meetups" },
   { id: "book", label: "Contact" },
 ];
@@ -27,8 +26,9 @@ const Navbar = () => {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const opts: AddEventListenerOptions = { passive: true };
+    window.addEventListener("scroll", onScroll, opts);
+    return () => window.removeEventListener("scroll", onScroll, opts);
   }, []);
 
   const scrollTo = (id: string) => {
